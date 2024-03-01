@@ -262,14 +262,133 @@ value ||= 40; // 30
 // }
 
 
-let n = 10;
+// let n = 10;
 
-nextPrime:
-for (let i = n; i > 0; i--) { // Для всех i...
+// nextPrime:
+// for (let i = n; i > 0; i--) { // Для всех i...
 
-  for (let j = i-1; i > 0; j++) { // проверить, делится ли число..
-    if (i % j == 0) continue nextPrime; // не подходит, берём следующее
+//   for (let j = i-1; i > 0; j--) { // проверить, делится ли число..
+//     console.log('i'+ '' + i)
+//     console.log('j'+ '' + j)
+//     if (i % j == 0) continue nextPrime; // не подходит, берём следующее
+//   }
+
+//   alert( i ); // простое число
+// }
+
+// let n = 20;
+
+// nextPrime:
+// for (let i = 2; i <= n; i++) { // Для всех i...
+
+//   for (let j = 2; j < i; j++) { // проверить, делится ли число..
+//     if (i % j == 0) continue nextPrime; // не подходит, берём следующее
+//   }
+
+//   alert( i ); // простое 
+// }
+
+// Не с первого раза онял. Перерешать
+
+// ======= 2.14 Конструкция "switch" =======
+
+// Напишите "if", аналогичный "switch"
+// if(browser === 'Edge') {
+//   alert( "You've got the Edge!" );
+// } else if(browser === 'Chrome' || browser === 'Firefox' ||browser === 'Safari' ||browser === 'Opera') {
+//   alert( 'Okay we support these browsers too' );
+// } else {
+//   alert( 'We hope that this page looks ok!' );
+// }
+
+// const number = +prompt('Введите число между 0 и 3', '');
+// switch(number) {
+//   case(0):
+//     alert('Вы ввели число 0');
+//     break;
+//   case(1):
+//     alert('Вы ввели число 1');
+//     break;
+//   case(2):
+//   case(3):
+//     alert('Вы ввели число 2, а может и 3');
+//     break;
+// }
+
+// ======= 2.15 Функции =======
+
+// Обязателен ли "else"?
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    // ...
+    return confirm('Родители разрешили?');
   }
-
-  alert( i ); // простое число
 }
+// Будет ли эта функция работать как-то иначе, если убрать else?
+
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  }
+  // ...
+  return confirm('Родители разрешили?');
+}
+
+// Нет, будет работать одинаково, так как если происходит выполнение условия if, то происходит возврат return и далее код не читается
+
+
+// Перепишите функцию, используя оператор '?' или '||'
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return confirm('Родители разрешили?');
+  }
+}
+
+function checkAge(age) {
+  return age > 18 ? true : confirm('Родители разрешили?')
+}
+
+function checkAge(age) {
+  return age > 18 || confirm('Родители разрешили?')
+}
+
+// Напишите функцию min(a,b), которая возвращает меньшее из чисел a и b.
+min(2, 5) == 2
+min(3, -1) == -1
+min(1, 1) == 1
+
+function min(a, b) {
+  return a < b ? a : b
+}
+
+// Функция pow(x,n)
+function pow(x, n) {
+  if(n < 1) {
+    return
+  }
+  return x **n
+}
+
+let x2 = prompt("введите x?");
+let n = prompt("введите n?");
+
+if(n < 1) {
+  alert(`Степень ${n} не поддерживается, используйте натуральное число`);
+} else {
+  alert( pow(x2, n) );
+}
+
+// ======= 2.17 Стрелочные функции, основы =======
+
+// Перепишите с использованием функции-стрелки
+const ask = (question, yes, no) => confirm(question) ? yes() : no()
+
+ask(
+  "Вы согласны?",
+  function() { alert("Вы согласились."); },
+  function() { alert("Вы отменили выполнение."); }
+);
