@@ -2,11 +2,11 @@
 
 // ======= Можно ли добавить свойство строке? =======
 
-// let str = "Привет";
+let str = "Привет";
 
-// str.test = 5;
+str.test = 5;
 
-// alert(str.test);
+alert(str.test);
 
 // Нет, не сработает. Выведется undefined
 
@@ -14,31 +14,30 @@
 // ============================== 5.2 Числа ==============================
 
 // ======= Сумма пользовательских чисел =======
-// const count1 = +prompt('Введите 1 число')
-// const count2 = +prompt('Введите 2 число')
-// alert(count1 + count2)
+const count1 = +prompt('Введите 1 число')
+const count2 = +prompt('Введите 2 число')
+alert(count1 + count2)
 
 // ======= Почему 6.35.toFixed(1) == 6.3? =======
-// Посмотрел ответ
 
 // Во внутреннем двоичном представлении 6.35 является бесконечной двоичной дробью. Хранится она с потерей точности…
-// alert( Math.round(6.35 * 10) / 10 )
+console.log( Math.round(6.35 * 10) / 10 )
 
 // ======= Ввод числового значения =======
-// function readNumber() {
-//    let entering = false
-//    let answer;
-//    while(!entering){
-//       answer = prompt('Введите число')
-//       console.log(answer)
-//       if(!isNaN(+answer) || answer === null) {
-//          entering = true
-//       }
-//    }
-//    return answer
-// }
+function readNumber() {
+   let entering = false
+   let answer;
+   while(!entering){
+      answer = prompt('Введите число')
+      console.log(answer)
+      if(!isNaN(+answer) || answer === null) {
+         entering = true
+      }
+   }
+   return answer
+}
 
-// console.log(readNumber())
+console.log(readNumber())
 
 // ======= Бесконечный цикл по ошибке =======
 
@@ -46,84 +45,83 @@
 
 // ======= Случайное число от min до max =======
 // Неправильный ответ
-// function random(min, max) {
-//    let count
-//    do {
-//       count = Math.random() * max
-//    } while(count <= min)
-//    return Math.floor(count)
-// }
+function random(min, max) {
+   let count
+   do {
+      count = Math.random() * max
+   } while(count <= min)
+   return Math.floor(count)
+}
 
 // Посмотрел решение
-// function random(min, max) {
-//    return min + Math.random() * (max - min);
-//  }
+function random(min, max) {
+   return min + Math.random() * (max - min);
+ }
 
-// console.log( random(1, 5) ); // 1.2345623452
-// console.log( random(3, 5) ); // 3.7894332423
-// console.log( random(2, 4) ); // 4.3435234525
+console.log( random(1, 5) ); // 1.2345623452
+console.log( random(3, 5) ); // 3.7894332423
+console.log( random(2, 4) ); // 4.3435234525
 
 // ======= Случайное целое число от min до max =======
-// function randomInteger(min, max) {
-//    return Math.floor((min + Math.random() * (max-min)))
-// }
+function randomInteger(min, max) {
+   return Math.floor((min + Math.random() * (max-min)))
+}
 
-// console.log( randomInteger(1, 5) ); // 1
-// console.log( randomInteger(1, 5) ); // 3
-// console.log( randomInteger(1, 5) ); // 5
+console.log( randomInteger(1, 5) ); // 1
+console.log( randomInteger(1, 5) ); // 3
+console.log( randomInteger(1, 5) ); // 5
 
 // ============================== 5.3 Строки ==============================
 
 // ======= Сделать первый символ заглавным =======
 
-// function ucFirst(str) {
-//    const result = `${str[0].toUpperCase()}${str.slice(1)}`
-//    return result
-// }
-// console.log(ucFirst("вася"))
+function ucFirst(str) {
+   const result = `${str[0].toUpperCase()}${str.slice(1)}`
+   return result
+}
+console.log(ucFirst("вася"))
 
 // ======= Проверка на спам =======
-// function checkSpam(str) {
-//    const censorship = ['viagra', 'XXX'].join(' ').toUpperCase().split(' ')
-//    for(let value of censorship) {
-//       if(str.toUpperCase().includes(value)) {
-//          return true
-//       }
-//    }
-//    return false
-// }
+function checkSpam(str) {
+   const censorship = ['viagra', 'XXX'].join(' ').toUpperCase().split(' ')
+   for(let value of censorship) {
+      if(str.toUpperCase().includes(value)) {
+         return true
+      }
+   }
+   return false
+}
 
-// console.log(checkSpam('buy ViAgRA now'))
-// console.log(checkSpam('free xxxxx'))
-// console.log(checkSpam("innocent rabbit"))
+console.log(checkSpam('buy ViAgRA now'))
+console.log(checkSpam('free xxxxx'))
+console.log(checkSpam("innocent rabbit"))
 
 // ======= Усечение строки =======
-// function truncate(str, maxlength) {
-//    if(str.length > maxlength) {
-//       str = `${str.slice(0, maxlength-1)}...`
-//    }
-//    return str
-// }
+function truncate(str, maxlength) {
+   if(str.length > maxlength) {
+      str = `${str.slice(0, maxlength-1)}...`
+   }
+   return str
+}
 
-// console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
-// console.log(truncate("Всем привет!", 20))
+console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
+console.log(truncate("Всем привет!", 20))
 
 // ======= Выделить число =======
-// function extractCurrencyValue(str) {
-//    const index$ = str.indexOf('$')
-//    const result = str.slice(index$+1)
-//    return +result
-// }
+function extractCurrencyValue(str) {
+   const index$ = str.indexOf('$')
+   const result = str.slice(index$+1)
+   return +result
+}
 
-// console.log(extractCurrencyValue('$120'))
+console.log(extractCurrencyValue('$120'))
 
 
 // ============================== 5.4 Массивы ==============================
 
 // ======= Скопирован ли массив? =======
 
-// что в fruits?
-// alert( fruits.length ); 4
+console.log( fruits.length ) // 4
 
 // ======= Операции с массивами =======
 
@@ -150,53 +148,53 @@ console.log(styles)
 
 // ======= Вызов в контексте массива =======
 
-// let arr = ["a", "b"];
+let arr = ["a", "b"];
 
-// arr.push(function() {
-//   alert( this );
-// });
+arr.push(function() {
+  alert( this );
+});
 
-// console.log(arr)
+console.log(arr)
 
-// arr = ["a", "b", function() {alert( this )}]
+arr = ["a", "b", function() {alert( this )}]
 
-// arr[2](); // ? this === "a", "b", function() {alert( this )}
+arr[2](); // ? this === "a", "b", function() {alert( this )}
 
 // ======= Сумма введённых чисел =======
 
-// function sumInput() {
-//    const result = []
+function sumInput() {
+   const result = []
 
-//    while(true) {
-//       const value = prompt('введите число')
-//       if(value === '' || value === null || !isFinite(value)) {
-//          break
-//       }
-//       result.push(+value)
-//    }
+   while(true) {
+      const value = prompt('введите число')
+      if(value === '' || value === null || !isFinite(value)) {
+         break
+      }
+      result.push(+value)
+   }
 
-//    const sum = result.reduce((accum, item) => accum + item, 0)
-//    return sum
-// }
+   const sum = result.reduce((accum, item) => accum + item, 0)
+   return sum
+}
 
-// console.log(sumInput())
+console.log(sumInput())
 
 // ======= Подмассив наибольшей суммы =======
 
 
-// const arr = [1, -2, 3, 4, -9, 6]
+const arr4 = [1, -2, 3, 4, -9, 6]
 
 
 function getMaxSubSum(arr) {
 
 }
 
-// console.log(getMaxSubSum([-1, 2, 3, -9]))
-// console.log(getMaxSubSum([2, -1, 2, 3, -9])) 
-// console.log(getMaxSubSum([-1, 2, 3, -9, 11]))
-// console.log(getMaxSubSum([-2, -1, 1, 2])) 
-// console.log(getMaxSubSum([100, -9, 2, -3, 5]))
-// console.log(getMaxSubSum([1, 2, 3]))
+console.log(getMaxSubSum([-1, 2, 3, -9]))
+console.log(getMaxSubSum([2, -1, 2, 3, -9])) 
+console.log(getMaxSubSum([-1, 2, 3, -9, 11]))
+console.log(getMaxSubSum([-2, -1, 1, 2])) 
+console.log(getMaxSubSum([100, -9, 2, -3, 5]))
+console.log(getMaxSubSum([1, 2, 3]))
 
 // Попробуйте придумать быстрое решение: O(n2), а лучше за О(n) операций.
 
@@ -206,49 +204,49 @@ function getMaxSubSum(arr) {
 // ======= Переведите текст вида border-left-width в borderLeftWidth =======
 
 // Сделал так:
-// function camelize(str) {
-//    const result = []
-//    strSplit = str.split('-')
-//    for (let i = 0; i < strSplit.length; i++) {
-//       if(i === 0) {
-//          result.push(strSplit[i])
-//       }
+function camelize(str) {
+   const result = []
+   strSplit = str.split('-')
+   for (let i = 0; i < strSplit.length; i++) {
+      if(i === 0) {
+         result.push(strSplit[i])
+      }
 
-//       else {
-//          let word = strSplit[i].split('')
-//          const firsLetter = word[0].toUpperCase();
-//          word.shift()
-//          word.unshift(firsLetter)
-//          word = word.join('')
-//          result.push(word)
-//       }
-//    }
-//    return result.join('')
-// }
+      else {
+         let word = strSplit[i].split('')
+         const firsLetter = word[0].toUpperCase();
+         word.shift()
+         word.unshift(firsLetter)
+         word = word.join('')
+         result.push(word)
+      }
+   }
+   return result.join('')
+}
 
 // А можно было так:
-// function camelize(str) {
-//    return str.split('-')
-//    .map((item, index) => index === 0 ? item : item[0].toUpperCase() + item.slice(1))
-//    .join('')
-// }
+function camelize(str) {
+   return str.split('-')
+   .map((item, index) => index === 0 ? item : item[0].toUpperCase() + item.slice(1))
+   .join('')
+}
 
-// console.log(camelize("background-color")) 
-// console.log(camelize("list-style-image"))
-// console.log(camelize("-webkit-transition"))
+console.log(camelize("background-color")) 
+console.log(camelize("list-style-image"))
+console.log(camelize("-webkit-transition"))
 
 // ======= Фильтрация по диапазону =======
 
-let arr = [5, 3, 8, 1];
+let arr9 = [5, 3, 8, 1];
 
-// function filterRange(arr, a, b) {
-//    return arr.filter(item => item >= a & item <= b)
-// }
+function filterRange(arr, a, b) {
+   return arr.filter(item => item >= a & item <= b)
+}
 
-// let filtered = filterRange(arr, 1, 4);
+let filtered = filterRange(arr, 1, 4);
 
-// console.log( filtered ); // 3,1 (совпадающие значения)
-// console.log( arr ); // 5,3,8,1 (без изменений)
+console.log( filtered ); // 3,1 (совпадающие значения)
+console.log( arr9 ); // 5,3,8,1 (без изменений)
 
 
 // ======= Фильтрация по диапазону "на месте" =======. Почему без i-- все работает также. Посмотрел ответ
@@ -264,12 +262,11 @@ function filterRangeInPlace(arr, a, b) {
        i--;
      }
    }
- 
  }
 
-filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4
+filterRangeInPlace(arr6, 1, 4); // удалены числа вне диапазона 1..4
 
-console.log( arr ); // [3, 1]
+console.log( arr6 ); // [3, 1]
 
 
 // ======= Сортировать в порядке по убыванию =======
@@ -322,48 +319,38 @@ let result = powerCalc.calculate("2 ** 3");
 console.log( result ); // 8
 
 // ======= Трансформировать в массив имён =======
-// let vasya = { name: "Вася", age: 25 };
-// let petya = { name: "Петя", age: 30 };
-// let masha = { name: "Маша", age: 28 };
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
 
-// let users = [ vasya, petya, masha ];
+let users = [ vasya, petya, masha ];
 
-// let names = users.map(item => item.name)
+let names = users.map(item => item.name)
 
-// console.log( names ); // Вася, Петя, Маша
+console.log( names ); // Вася, Петя, Маша
 
 // ======= Трансформировать в объекты =======
 
-// let vasya = { name: "Вася", surname: "Пупкин", id: 1 };
-// let petya = { name: "Петя", surname: "Иванов", id: 2 };
-// let masha = { name: "Маша", surname: "Петрова", id: 3 };
+let usersMapped = users.map(item => ({fullName: `${item.name} ${item.surname}`, id: item.id}))
 
-// let users = [ vasya, petya, masha ];
-
-// let usersMapped = users.map(item => ({fullName: `${item.name} ${item.surname}`, id: item.id}))
-
-// console.log( usersMapped[0].id ) // 1
-// console.log( usersMapped[0].fullName ) // Вася Пупкин
+console.log( usersMapped[0].id ) // 1
+console.log( usersMapped[0].fullName ) // Вася Пупкин
 
 
 // ======= Отсортировать пользователей по возрасту =======
 
-// let vasya = { name: "Вася", age: 25 };
-// let petya = { name: "Петя", age: 30 };
-// let masha = { name: "Маша", age: 28 };
+let arr7 = [ vasya, petya, masha ];
 
-// let arr4 = [ vasya, petya, masha ];
+function sortByAge(users) {
+  return users.sort((a, b) => a.age - b.age)
+}
 
-// function sortByAge(users) {
-//   return users.sort((a, b) => a.age - b.age)
-// }
+sortByAge(arr7);
 
-// sortByAge(arr4);
-
-// // теперь: [vasya, masha, petya]
-// console.log(arr4[0].name); // Вася
-// console.log(arr4[1].name); // Маша
-// console.log(arr4[2].name); // Петя
+// теперь: [vasya, masha, petya]
+console.log(arr7[0].name); // Вася
+console.log(arr7[1].name); // Маша
+console.log(arr7[2].name); // Петя
 
 // ======= Перемешайте массив =======
 
@@ -399,97 +386,97 @@ console.log(shuffle(arr5));
 
 // ======= Получить средний возраст =======
 
-// let vasya = { name: "Вася", age: 25 };
-// let petya = { name: "Петя", age: 30 };
-// let masha = { name: "Маша", age: 29 };
+let vasya2 = { name: "Вася", age: 25 };
+let petya2 = { name: "Петя", age: 30 };
+let masha2 = { name: "Маша", age: 29 };
 
-// let arr6 = [ vasya, petya, masha ];
+let arr6 = [ vasya2, petya2, masha2 ];
 
-// function getAverageAge(users) {
-//   const totalAge = users.reduce((accum, item) => accum + item.age,0)
-//   return totalAge/users.length
-// }
-// console.log( getAverageAge(arr6) ); // (25 + 30 + 29) / 3 = 28
+function getAverageAge(users) {
+  const totalAge = users.reduce((accum, item) => accum + item.age,0)
+  return totalAge/users.length
+}
+console.log( getAverageAge(arr6) ); // (25 + 30 + 29) / 3 = 28
 
 
 // ======= Оставить уникальные элементы массива =======
 
-// let strings = ["кришна", "кришна", "харе", "харе",
-//   "харе", "харе", "кришна", "кришна", ":-O"
-// ];
+let strings = ["кришна", "кришна", "харе", "харе",
+  "харе", "харе", "кришна", "кришна", ":-O"
+];
 
-// function unique(arr) {
-//   const result = [];
-//   arr.forEach(item => {
-//     if(!result.includes(item)) {
-//       result.push(item)
-//     }
-//   })
-//   return result
-// }
+function unique(arr) {
+  const result = [];
+  arr.forEach(item => {
+    if(!result.includes(item)) {
+      result.push(item)
+    }
+  })
+  return result
+}
 
-// console.log( unique(strings) ); // кришна, харе, :-O
+console.log( unique(strings) ); // кришна, харе, :-O
 
 // ======= Создайте объект с ключами из массива =======
 
-// let users = [
-//   {id: 'john', name: "John Smith", age: 20},
-//   {id: 'ann', name: "Ann Smith", age: 24},
-//   {id: 'pete', name: "Pete Peterson", age: 31},
-// ];
+let users3 = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
 
-// function groupById(arr) {
-//   const result = arr.reduce((accum, item) => {
-//     accum[item.id] = item
-//     return accum
-//   }, {})
-//   return result
-// }
+function groupById(arr) {
+  const result = arr.reduce((accum, item) => {
+    accum[item.id] = item
+    return accum
+  }, {})
+  return result
+}
 
-// let usersById = groupById(users);
-// console.log(usersById)
+let usersById = groupById(users3);
+console.log(usersById)
 
 // ============================== 5.7 Перебираемые объекты ==============================
 
 // ======= Фильтрация уникальных элементов массива =======
 
-// function unique(arr) {
-//   return Array.from(new Set(arr))
-// }
+function unique(arr) {
+  return Array.from(new Set(arr))
+}
 
-// let values = ["Hare", "Krishna", "Hare", "Krishna",
-//   "Krishna", "Krishna", "Hare", "Hare", ":-O"
-// ];
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
 
-// console.log( unique(values) ); // Hare,Krishna,:-O
+console.log( unique(values) ); // Hare,Krishna,:-O
 
 // ======= Отфильтруйте анаграммы =======
 
-// function aclean(arr) {
-//   const map = new Map()
-//   for(let word of arr) {
-//     const sorted = word.toLowerCase().split('').sort((a, b) => a.localeCompare(b)).join('')
-//     map.set(sorted, word)
-//   }
-//   return Array.from(map.values())
-// }
+function aclean(arr) {
+  const map = new Map()
+  for(let word of arr) {
+    const sorted = word.toLowerCase().split('').sort((a, b) => a.localeCompare(b)).join('')
+    map.set(sorted, word)
+  }
+  return Array.from(map.values())
+}
 
-// let arr6 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+let arr8 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-// console.log( aclean(arr6) ); // "nap,teachers,ear" или "PAN,cheaters,era"
+console.log( aclean(arr8) ); // "nap,teachers,ear" или "PAN,cheaters,era"
 
 
 // ======= Перебираемые ключи =======
 
-// let map = new Map();
+let map = new Map();
 
-// map.set("name", "John");
+map.set("name", "John");
 
-// let keys = Array.from(map.keys())
+let keys = Array.from(map.keys())
 
-// keys.push("more");
+keys.push("more");
 
-// console.log(keys)
+console.log(keys)
 
 // ============================== 5.8 WeakMap и WeakSet ==============================
 
@@ -500,14 +487,6 @@ let messages = [
   {text: "How goes?", from: "John"},
   {text: "See you soon", from: "Alice"}
 ];
-// У вас есть к ним доступ, но управление этим массивом происходит где-то ещё. Добавляются новые сообщения и удаляются старые, и вы не знаете в какой момент это может произойти.
-
-// Имея такую вводную информацию, решите, какую структуру данных вы могли бы использовать для ответа на вопрос «было ли сообщение прочитано?». Структура должна быть подходящей, чтобы можно было однозначно сказать, было ли прочитано это сообщение для каждого объекта сообщения.
-
-// P.S. Когда сообщение удаляется из массива messages, оно должно также исчезать из структуры данных.
-
-// P.P.S. Нам не следует модифицировать сами объекты сообщений, добавлять туда свойства. Если сообщения принадлежат какому-то другому коду, то это может привести к плохим последствиям.
-
 
 let unreadMessages = new WeakSet();
 unreadMessages.add(messages[0])
