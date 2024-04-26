@@ -414,21 +414,21 @@ console.log(shuffle(arr5));
 
 // ======= Оставить уникальные элементы массива =======
 
-let strings = ["кришна", "кришна", "харе", "харе",
-  "харе", "харе", "кришна", "кришна", ":-O"
-];
+// let strings = ["кришна", "кришна", "харе", "харе",
+//   "харе", "харе", "кришна", "кришна", ":-O"
+// ];
 
-function unique(arr) {
-  const result = [];
-  arr.forEach(item => {
-    if(!result.includes(item)) {
-      result.push(item)
-    }
-  })
-  return result
-}
+// function unique(arr) {
+//   const result = [];
+//   arr.forEach(item => {
+//     if(!result.includes(item)) {
+//       result.push(item)
+//     }
+//   })
+//   return result
+// }
 
-console.log( unique(strings) ); // кришна, харе, :-O
+// console.log( unique(strings) ); // кришна, харе, :-O
 
 // ======= Создайте объект с ключами из массива =======
 
@@ -448,3 +448,64 @@ console.log( unique(strings) ); // кришна, харе, :-O
 
 // let usersById = groupById(users);
 // console.log(usersById)
+
+// ============================== 5.6 Перебираемые объекты ==============================
+
+// ======= Фильтрация уникальных элементов массива =======
+
+function unique(arr) {
+  return Array.from(new Set(arr))
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+console.log( unique(values) ); // Hare,Krishna,:-O
+
+// ======= Отфильтруйте анаграммы =======
+
+function aclean(arr) {
+  const map = new Map()
+  for(let word of arr) {
+    const sorted = word.toLowerCase().split('').sort((a, b) => a.localeCompare(b)).join('')
+    map.set(sorted, word)
+  }
+  return Array.from(map.values())
+}
+
+let arr6 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+console.log( aclean(arr6) ); // "nap,teachers,ear" или "PAN,cheaters,era"
+
+
+// ======= Перебираемые ключи =======
+
+let map = new Map();
+
+map.set("name", "John");
+
+let keys = Array.from(map.keys())
+
+keys.push("more");
+
+console.log(keys)
+
+
+// ======= Хранение отметок "не прочитано" =======
+
+let messages = [
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
+];
+// У вас есть к ним доступ, но управление этим массивом происходит где-то ещё. Добавляются новые сообщения и удаляются старые, и вы не знаете в какой момент это может произойти.
+
+// Имея такую вводную информацию, решите, какую структуру данных вы могли бы использовать для ответа на вопрос «было ли сообщение прочитано?». Структура должна быть подходящей, чтобы можно было однозначно сказать, было ли прочитано это сообщение для каждого объекта сообщения.
+
+// P.S. Когда сообщение удаляется из массива messages, оно должно также исчезать из структуры данных.
+
+// P.P.S. Нам не следует модифицировать сами объекты сообщений, добавлять туда свойства. Если сообщения принадлежат какому-то другому коду, то это может привести к плохим последствиям.
+
+
+WeakMap(messages)
