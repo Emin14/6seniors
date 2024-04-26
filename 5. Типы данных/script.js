@@ -449,48 +449,49 @@ console.log(shuffle(arr5));
 // let usersById = groupById(users);
 // console.log(usersById)
 
-// ============================== 5.6 Перебираемые объекты ==============================
+// ============================== 5.7 Перебираемые объекты ==============================
 
 // ======= Фильтрация уникальных элементов массива =======
 
-function unique(arr) {
-  return Array.from(new Set(arr))
-}
+// function unique(arr) {
+//   return Array.from(new Set(arr))
+// }
 
-let values = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"
-];
+// let values = ["Hare", "Krishna", "Hare", "Krishna",
+//   "Krishna", "Krishna", "Hare", "Hare", ":-O"
+// ];
 
-console.log( unique(values) ); // Hare,Krishna,:-O
+// console.log( unique(values) ); // Hare,Krishna,:-O
 
 // ======= Отфильтруйте анаграммы =======
 
-function aclean(arr) {
-  const map = new Map()
-  for(let word of arr) {
-    const sorted = word.toLowerCase().split('').sort((a, b) => a.localeCompare(b)).join('')
-    map.set(sorted, word)
-  }
-  return Array.from(map.values())
-}
+// function aclean(arr) {
+//   const map = new Map()
+//   for(let word of arr) {
+//     const sorted = word.toLowerCase().split('').sort((a, b) => a.localeCompare(b)).join('')
+//     map.set(sorted, word)
+//   }
+//   return Array.from(map.values())
+// }
 
-let arr6 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+// let arr6 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-console.log( aclean(arr6) ); // "nap,teachers,ear" или "PAN,cheaters,era"
+// console.log( aclean(arr6) ); // "nap,teachers,ear" или "PAN,cheaters,era"
 
 
 // ======= Перебираемые ключи =======
 
-let map = new Map();
+// let map = new Map();
 
-map.set("name", "John");
+// map.set("name", "John");
 
-let keys = Array.from(map.keys())
+// let keys = Array.from(map.keys())
 
-keys.push("more");
+// keys.push("more");
 
-console.log(keys)
+// console.log(keys)
 
+// ============================== 5.8 WeakMap и WeakSet ==============================
 
 // ======= Хранение отметок "не прочитано" =======
 
@@ -508,4 +509,62 @@ let messages = [
 // P.P.S. Нам не следует модифицировать сами объекты сообщений, добавлять туда свойства. Если сообщения принадлежат какому-то другому коду, то это может привести к плохим последствиям.
 
 
-WeakMap(messages)
+let unreadMessages = new WeakSet();
+unreadMessages.add(messages[0])
+unreadMessages.add(messages[1])
+unreadMessages.add(messages[0])
+
+console.log(unreadMessages)
+console.log(unreadMessages.has(messages[0]))
+
+
+// ======= Хранение времени прочтения =======
+
+let messages2 = [
+  { text: "Hello", from: "John" },
+  { text: "How goes?", from: "John" },
+  { text: "See you soon", from: "Alice" }
+];
+
+let readMap = new WeakMap();
+
+readMap.set(messages[0], new Date(2017, 1, 1));
+readMap.set(messages[1], new Date(2018, 1, 1));
+
+console.log(readMap)
+
+
+// ============================== 5.9 Object.keys, values, entries ==============================
+
+// ======= Сумма свойств объекта =======
+
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+function sumSalaries(salaries) {
+  let summ = 0
+  for(const salary of Object.values(salaries)) {
+    summ += salary
+  }
+  return summ
+}
+
+console.log( sumSalaries(salaries) ); // 650
+
+// ======= Подсчёт количества свойств объекта =======
+
+let user = {
+  name: 'John',
+  age: 30
+};
+
+function count(obj) {
+  return Object.keys(obj).length
+}
+
+console.log( count(user) ); // 2
+
+
