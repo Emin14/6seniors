@@ -1,564 +1,564 @@
-// // ============================== 5.1 Методы примитивов ==============================
-
-// // ======= Можно ли добавить свойство строке? =======
-
-// let str = "Привет";
-
-// str.test = 5;
-
-// alert(str.test);
-
-// // Нет, не сработает. Выведется undefined
-
-
-// // ============================== 5.2 Числа ==============================
-
-// // ======= Сумма пользовательских чисел =======
-// const count1 = +prompt('Введите 1 число')
-// const count2 = +prompt('Введите 2 число')
-// alert(count1 + count2)
+// ============================== 5.1 Методы примитивов ==============================
+
+// ======= Можно ли добавить свойство строке? =======
+
+let str = "Привет";
+
+str.test = 5;
+
+alert(str.test);
+
+// Нет, не сработает. Выведется undefined
+
+
+// ============================== 5.2 Числа ==============================
+
+// ======= Сумма пользовательских чисел =======
+const count1 = +prompt('Введите 1 число')
+const count2 = +prompt('Введите 2 число')
+alert(count1 + count2)
 
-// // ======= Почему 6.35.toFixed(1) == 6.3? =======
+// ======= Почему 6.35.toFixed(1) == 6.3? =======
 
-// // Во внутреннем двоичном представлении 6.35 является бесконечной двоичной дробью. Хранится она с потерей точности…
-// console.log( Math.round(6.35 * 10) / 10 )
+// Во внутреннем двоичном представлении 6.35 является бесконечной двоичной дробью. Хранится она с потерей точности…
+console.log( Math.round(6.35 * 10) / 10 )
 
-// // ======= Ввод числового значения =======
-// function readNumber() {
-//    let entering = false
-//    let answer;
-//    while(!entering){
-//       answer = prompt('Введите число')
-//       console.log(answer)
-//       if(!isNaN(+answer) || answer === null) {
-//          entering = true
-//       }
-//    }
-//    return answer
-// }
+// ======= Ввод числового значения =======
+function readNumber() {
+   let entering = false
+   let answer;
+   while(!entering){
+      answer = prompt('Введите число')
+      console.log(answer)
+      if(!isNaN(+answer) || answer === null) {
+         entering = true
+      }
+   }
+   return answer
+}
 
-// console.log(readNumber())
+console.log(readNumber())
 
-// // ======= Бесконечный цикл по ошибке =======
+// ======= Бесконечный цикл по ошибке =======
 
-// // Из-за потери точности
+// Из-за потери точности
 
-// // ======= Случайное число от min до max =======
-// // Неправильный ответ
-// function random(min, max) {
-//    let count
-//    do {
-//       count = Math.random() * max
-//    } while(count <= min)
-//    return Math.floor(count)
-// }
+// ======= Случайное число от min до max =======
+// Неправильный ответ
+function random(min, max) {
+   let count
+   do {
+      count = Math.random() * max
+   } while(count <= min)
+   return Math.floor(count)
+}
 
-// // Посмотрел решение
-// function random(min, max) {
-//    return min + Math.random() * (max - min);
-//  }
+// Посмотрел решение
+function random(min, max) {
+   return min + Math.random() * (max - min);
+ }
 
-// console.log( random(1, 5) ); // 1.2345623452
-// console.log( random(3, 5) ); // 3.7894332423
-// console.log( random(2, 4) ); // 4.3435234525
+console.log( random(1, 5) ); // 1.2345623452
+console.log( random(3, 5) ); // 3.7894332423
+console.log( random(2, 4) ); // 4.3435234525
 
-// // ======= Случайное целое число от min до max =======
-// function randomInteger(min, max) {
-//    return Math.floor((min + Math.random() * (max-min)))
-// }
+// ======= Случайное целое число от min до max =======
+function randomInteger(min, max) {
+   return Math.floor((min + Math.random() * (max-min)))
+}
 
-// console.log( randomInteger(1, 5) ); // 1
-// console.log( randomInteger(1, 5) ); // 3
-// console.log( randomInteger(1, 5) ); // 5
+console.log( randomInteger(1, 5) ); // 1
+console.log( randomInteger(1, 5) ); // 3
+console.log( randomInteger(1, 5) ); // 5
 
-// // ============================== 5.3 Строки ==============================
+// ============================== 5.3 Строки ==============================
 
-// // ======= Сделать первый символ заглавным =======
+// ======= Сделать первый символ заглавным =======
 
-// function ucFirst(str) {
-//    const result = `${str[0].toUpperCase()}${str.slice(1)}`
-//    return result
-// }
-// console.log(ucFirst("вася"))
+function ucFirst(str) {
+   const result = `${str[0].toUpperCase()}${str.slice(1)}`
+   return result
+}
+console.log(ucFirst("вася"))
 
-// // ======= Проверка на спам =======
-// function checkSpam(str) {
-//    const censorship = ['viagra', 'XXX'].join(' ').toUpperCase().split(' ')
-//    for(let value of censorship) {
-//       if(str.toUpperCase().includes(value)) {
-//          return true
-//       }
-//    }
-//    return false
-// }
+// ======= Проверка на спам =======
+function checkSpam(str) {
+   const censorship = ['viagra', 'XXX'].join(' ').toUpperCase().split(' ')
+   for(let value of censorship) {
+      if(str.toUpperCase().includes(value)) {
+         return true
+      }
+   }
+   return false
+}
 
-// console.log(checkSpam('buy ViAgRA now'))
-// console.log(checkSpam('free xxxxx'))
-// console.log(checkSpam("innocent rabbit"))
+console.log(checkSpam('buy ViAgRA now'))
+console.log(checkSpam('free xxxxx'))
+console.log(checkSpam("innocent rabbit"))
 
-// // ======= Усечение строки =======
-// function truncate(str, maxlength) {
-//    if(str.length > maxlength) {
-//       str = `${str.slice(0, maxlength-1)}...`
-//    }
-//    return str
-// }
+// ======= Усечение строки =======
+function truncate(str, maxlength) {
+   if(str.length > maxlength) {
+      str = `${str.slice(0, maxlength-1)}...`
+   }
+   return str
+}
 
-// console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
-// console.log(truncate("Всем привет!", 20))
+console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
+console.log(truncate("Всем привет!", 20))
 
-// // ======= Выделить число =======
-// function extractCurrencyValue(str) {
-//    const index$ = str.indexOf('$')
-//    const result = str.slice(index$+1)
-//    return +result
-// }
+// ======= Выделить число =======
+function extractCurrencyValue(str) {
+   const index$ = str.indexOf('$')
+   const result = str.slice(index$+1)
+   return +result
+}
 
-// console.log(extractCurrencyValue('$120'))
+console.log(extractCurrencyValue('$120'))
 
 
-// // ============================== 5.4 Массивы ==============================
+// ============================== 5.4 Массивы ==============================
 
-// // ======= Скопирован ли массив? =======
+// ======= Скопирован ли массив? =======
 
-// console.log( fruits.length ) // 4
+console.log( fruits.length ) // 4
 
-// // ======= Операции с массивами =======
+// ======= Операции с массивами =======
 
-// const styles = ['Jazz', 'Blues']
+const styles = ['Jazz', 'Blues']
 
-// styles.push('Rock and roll')
+styles.push('Rock and roll')
 
-// console.log(styles)
+console.log(styles)
 
-// styles[Math.floor(styles.length / 2)] = 'Classical'
+styles[Math.floor(styles.length / 2)] = 'Classical'
 
-// console.log(styles)
+console.log(styles)
 
-// const firstElement = styles.shift()
+const firstElement = styles.shift()
 
-// console.log(styles)
+console.log(styles)
 
-// console.log(firstElement)
+console.log(firstElement)
 
-// styles.unshift('Rap', 'Reggae')
+styles.unshift('Rap', 'Reggae')
 
-// console.log(styles)
+console.log(styles)
 
 
-// // ======= Вызов в контексте массива =======
+// ======= Вызов в контексте массива =======
 
-// let arr = ["a", "b"];
+let arr = ["a", "b"];
 
-// arr.push(function() {
-//   alert( this );
-// });
+arr.push(function() {
+  alert( this );
+});
 
-// console.log(arr)
+console.log(arr)
 
-// arr = ["a", "b", function() {alert( this )}]
+arr = ["a", "b", function() {alert( this )}]
 
-// arr[2](); // ? this === "a", "b", function() {alert( this )}
+arr[2](); // ? this === "a", "b", function() {alert( this )}
 
-// // ======= Сумма введённых чисел =======
+// ======= Сумма введённых чисел =======
 
-// function sumInput() {
-//    const result = []
+function sumInput() {
+   const result = []
 
-//    while(true) {
-//       const value = prompt('введите число')
-//       if(value === '' || value === null || !isFinite(value)) {
-//          break
-//       }
-//       result.push(+value)
-//    }
+   while(true) {
+      const value = prompt('введите число')
+      if(value === '' || value === null || !isFinite(value)) {
+         break
+      }
+      result.push(+value)
+   }
 
-//    const sum = result.reduce((accum, item) => accum + item, 0)
-//    return sum
-// }
+   const sum = result.reduce((accum, item) => accum + item, 0)
+   return sum
+}
 
-// console.log(sumInput())
+console.log(sumInput())
 
-// // ======= Подмассив наибольшей суммы =======
+// ======= Подмассив наибольшей суммы =======
 
 
-// const arr4 = [1, -2, 3, 4, -9, 6]
+const arr4 = [1, -2, 3, 4, -9, 6]
 
 
-// function getMaxSubSum(arr) {
+function getMaxSubSum(arr) {
 
-// }
+}
 
-// console.log(getMaxSubSum([-1, 2, 3, -9]))
-// console.log(getMaxSubSum([2, -1, 2, 3, -9])) 
-// console.log(getMaxSubSum([-1, 2, 3, -9, 11]))
-// console.log(getMaxSubSum([-2, -1, 1, 2])) 
-// console.log(getMaxSubSum([100, -9, 2, -3, 5]))
-// console.log(getMaxSubSum([1, 2, 3]))
+console.log(getMaxSubSum([-1, 2, 3, -9]))
+console.log(getMaxSubSum([2, -1, 2, 3, -9])) 
+console.log(getMaxSubSum([-1, 2, 3, -9, 11]))
+console.log(getMaxSubSum([-2, -1, 1, 2])) 
+console.log(getMaxSubSum([100, -9, 2, -3, 5]))
+console.log(getMaxSubSum([1, 2, 3]))
 
-// // Попробуйте придумать быстрое решение: O(n2), а лучше за О(n) операций.
+// Попробуйте придумать быстрое решение: O(n2), а лучше за О(n) операций.
 
 
-// // ============================== 5.5 Методы массивов ==============================
+// ============================== 5.5 Методы массивов ==============================
 
-// // ======= Переведите текст вида border-left-width в borderLeftWidth =======
+// ======= Переведите текст вида border-left-width в borderLeftWidth =======
 
-// // Сделал так:
-// function camelize(str) {
-//    const result = []
-//    strSplit = str.split('-')
-//    for (let i = 0; i < strSplit.length; i++) {
-//       if(i === 0) {
-//          result.push(strSplit[i])
-//       }
+// Сделал так:
+function camelize(str) {
+   const result = []
+   strSplit = str.split('-')
+   for (let i = 0; i < strSplit.length; i++) {
+      if(i === 0) {
+         result.push(strSplit[i])
+      }
 
-//       else {
-//          let word = strSplit[i].split('')
-//          const firsLetter = word[0].toUpperCase();
-//          word.shift()
-//          word.unshift(firsLetter)
-//          word = word.join('')
-//          result.push(word)
-//       }
-//    }
-//    return result.join('')
-// }
+      else {
+         let word = strSplit[i].split('')
+         const firsLetter = word[0].toUpperCase();
+         word.shift()
+         word.unshift(firsLetter)
+         word = word.join('')
+         result.push(word)
+      }
+   }
+   return result.join('')
+}
 
-// // А можно было так:
-// function camelize(str) {
-//    return str.split('-')
-//    .map((item, index) => index === 0 ? item : item[0].toUpperCase() + item.slice(1))
-//    .join('')
-// }
+// А можно было так:
+function camelize(str) {
+   return str.split('-')
+   .map((item, index) => index === 0 ? item : item[0].toUpperCase() + item.slice(1))
+   .join('')
+}
 
-// console.log(camelize("background-color")) 
-// console.log(camelize("list-style-image"))
-// console.log(camelize("-webkit-transition"))
+console.log(camelize("background-color")) 
+console.log(camelize("list-style-image"))
+console.log(camelize("-webkit-transition"))
 
-// // ======= Фильтрация по диапазону =======
+// ======= Фильтрация по диапазону =======
 
-// let arr9 = [5, 3, 8, 1];
+let arr9 = [5, 3, 8, 1];
 
-// function filterRange(arr, a, b) {
-//    return arr.filter(item => item >= a & item <= b)
-// }
+function filterRange(arr, a, b) {
+   return arr.filter(item => item >= a & item <= b)
+}
 
-// let filtered = filterRange(arr, 1, 4);
+let filtered = filterRange(arr, 1, 4);
 
-// console.log( filtered ); // 3,1 (совпадающие значения)
-// console.log( arr9 ); // 5,3,8,1 (без изменений)
+console.log( filtered ); // 3,1 (совпадающие значения)
+console.log( arr9 ); // 5,3,8,1 (без изменений)
 
 
-// // ======= Фильтрация по диапазону "на месте" =======. Почему без i-- все работает также. Посмотрел ответ
+// ======= Фильтрация по диапазону "на месте" =======. Почему без i-- все работает также. Посмотрел ответ
 
-// function filterRangeInPlace(arr, a, b) {
+function filterRangeInPlace(arr, a, b) {
 
-//    for (let i = 0; i < arr.length; i++) {
-//      let val = arr[i];
-//       console.log(val)
-//      // удалить, если за пределами интервала
-//      if (val < a || val > b) {
-//        arr.splice(i, 1);
-//        i--;
-//      }
-//    }
-//  }
+   for (let i = 0; i < arr.length; i++) {
+     let val = arr[i];
+      console.log(val)
+     // удалить, если за пределами интервала
+     if (val < a || val > b) {
+       arr.splice(i, 1);
+       i--;
+     }
+   }
+ }
 
-// filterRangeInPlace(arr6, 1, 4); // удалены числа вне диапазона 1..4
+filterRangeInPlace(arr6, 1, 4); // удалены числа вне диапазона 1..4
 
-// console.log( arr6 ); // [3, 1]
+console.log( arr6 ); // [3, 1]
 
 
-// // ======= Сортировать в порядке по убыванию =======
-// let arr2 = [5, 2, 1, -10, 8];
-// arr2.sort((a, b) => b-a)
-// console.log( arr2 ); // 8, 5, 2, 1, -10
+// ======= Сортировать в порядке по убыванию =======
+let arr2 = [5, 2, 1, -10, 8];
+arr2.sort((a, b) => b-a)
+console.log( arr2 ); // 8, 5, 2, 1, -10
 
-// // ======= Скопировать и отсортировать массив =======
+// ======= Скопировать и отсортировать массив =======
 
-// function copySorted(arr) {
-//    return arr.slice().sort()
-// }
+function copySorted(arr) {
+   return arr.slice().sort()
+}
 
-// let arr3 = ["HTML", "JavaScript", "CSS"];
+let arr3 = ["HTML", "JavaScript", "CSS"];
 
-// let sorted = copySorted(arr3);
+let sorted = copySorted(arr3);
 
-// console.log( sorted ); // CSS, HTML, JavaScript
-// console.log( arr3 ); // HTML, JavaScript, CSS (без изменений)
+console.log( sorted ); // CSS, HTML, JavaScript
+console.log( arr3 ); // HTML, JavaScript, CSS (без изменений)
 
 
-// // ======= Создать расширяемый калькулятор ======= <Были трудности, посмотрел решение>
-// function Calculator(str) {
-//   this.metode =  {
-//     '+': (a, b) => a + b,
-//     '-': (a, b) => a - b
-//   }
-//  this.calculate = function calculate (str) {
-//     const array = str.split(' ')
-//     const value1 = +array[0]
-//     const operator = array[1]
-//     const value2 = +array[2]
-//     return this.metode[operator](value1, value2)
-// }
+// ======= Создать расширяемый калькулятор ======= <Были трудности, посмотрел решение>
+function Calculator(str) {
+  this.metode =  {
+    '+': (a, b) => a + b,
+    '-': (a, b) => a - b
+  }
+ this.calculate = function calculate (str) {
+    const array = str.split(' ')
+    const value1 = +array[0]
+    const operator = array[1]
+    const value2 = +array[2]
+    return this.metode[operator](value1, value2)
+}
 
-//   this.addMethod = function addMethod (name, func) {
-//     this.metode[name] = func
-//   }
-// }
+  this.addMethod = function addMethod (name, func) {
+    this.metode[name] = func
+  }
+}
 
-// let calc = new Calculator;
-// console.log( calc.calculate("3 + 7") ); // 10
+let calc = new Calculator;
+console.log( calc.calculate("3 + 7") ); // 10
 
-// let powerCalc = new Calculator;
-// powerCalc.addMethod("*", (a, b) => a * b);
-// powerCalc.addMethod("/", (a, b) => a / b);
-// powerCalc.addMethod("**", (a, b) => a ** b);
+let powerCalc = new Calculator;
+powerCalc.addMethod("*", (a, b) => a * b);
+powerCalc.addMethod("/", (a, b) => a / b);
+powerCalc.addMethod("**", (a, b) => a ** b);
 
-// let result = powerCalc.calculate("2 ** 3");
-// console.log( result ); // 8
+let result = powerCalc.calculate("2 ** 3");
+console.log( result ); // 8
 
-// // ======= Трансформировать в массив имён =======
-// let vasya = { name: "Вася", age: 25 };
-// let petya = { name: "Петя", age: 30 };
-// let masha = { name: "Маша", age: 28 };
+// ======= Трансформировать в массив имён =======
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
 
-// let users = [ vasya, petya, masha ];
+let users = [ vasya, petya, masha ];
 
-// let names = users.map(item => item.name)
+let names = users.map(item => item.name)
 
-// console.log( names ); // Вася, Петя, Маша
+console.log( names ); // Вася, Петя, Маша
 
-// // ======= Трансформировать в объекты =======
+// ======= Трансформировать в объекты =======
 
-// let usersMapped = users.map(item => ({fullName: `${item.name} ${item.surname}`, id: item.id}))
+let usersMapped = users.map(item => ({fullName: `${item.name} ${item.surname}`, id: item.id}))
 
-// console.log( usersMapped[0].id ) // 1
-// console.log( usersMapped[0].fullName ) // Вася Пупкин
+console.log( usersMapped[0].id ) // 1
+console.log( usersMapped[0].fullName ) // Вася Пупкин
 
 
-// // ======= Отсортировать пользователей по возрасту =======
+// ======= Отсортировать пользователей по возрасту =======
 
-// let arr7 = [ vasya, petya, masha ];
+let arr7 = [ vasya, petya, masha ];
 
-// function sortByAge(users) {
-//   return users.sort((a, b) => a.age - b.age)
-// }
+function sortByAge(users) {
+  return users.sort((a, b) => a.age - b.age)
+}
 
-// sortByAge(arr7);
+sortByAge(arr7);
 
-// // теперь: [vasya, masha, petya]
-// console.log(arr7[0].name); // Вася
-// console.log(arr7[1].name); // Маша
-// console.log(arr7[2].name); // Петя
+// теперь: [vasya, masha, petya]
+console.log(arr7[0].name); // Вася
+console.log(arr7[1].name); // Маша
+console.log(arr7[2].name); // Петя
 
-// // ======= Перемешайте массив =======
+// ======= Перемешайте массив =======
 
+function shuffle(array) {
+  const max = array.length - 1
+  const result = []
+
+  array.forEach((__, index) => {
+    while(index < array.length) {
+      const random = Math.floor((Math.random() * (max + 1)))
+      if(!result[random]) {
+        result[random] = array[index]
+        break
+      }
+    }
+  })
+  return result
+}
+
+// Реализация в учебнике
 // function shuffle(array) {
-//   const max = array.length - 1
-//   const result = []
-
-//   array.forEach((__, index) => {
-//     while(index < array.length) {
-//       const random = Math.floor((Math.random() * (max + 1)))
-//       if(!result[random]) {
-//         result[random] = array[index]
-//         break
-//       }
-//     }
-//   })
-//   return result
-// }
-
-// // Реализация в учебнике
-// // function shuffle(array) {
-// //   for (let i = array.length - 1; i > 0; i--) {
-// //     let j = Math.floor(Math.random() * (i+1));
-// //     [array[i], array[j]] =  [array[j], array[i]];
-// //   }
-// //   return array
-// // }
-
-// let arr5 = [1, 2, 3];
-// console.log(shuffle(arr5));
-// console.log(shuffle(arr5));
-// console.log(shuffle(arr5));
-
-// // ======= Получить средний возраст =======
-
-// let vasya2 = { name: "Вася", age: 25 };
-// let petya2 = { name: "Петя", age: 30 };
-// let masha2 = { name: "Маша", age: 29 };
-
-// let arr6 = [ vasya2, petya2, masha2 ];
-
-// function getAverageAge(users) {
-//   const totalAge = users.reduce((accum, item) => accum + item.age,0)
-//   return totalAge/users.length
-// }
-// console.log( getAverageAge(arr6) ); // (25 + 30 + 29) / 3 = 28
-
-
-// // ======= Оставить уникальные элементы массива =======
-
-// let strings = ["кришна", "кришна", "харе", "харе",
-//   "харе", "харе", "кришна", "кришна", ":-O"
-// ];
-
-// function unique(arr) {
-//   const result = [];
-//   arr.forEach(item => {
-//     if(!result.includes(item)) {
-//       result.push(item)
-//     }
-//   })
-//   return result
-// }
-
-// console.log( unique(strings) ); // кришна, харе, :-O
-
-// // ======= Создайте объект с ключами из массива =======
-
-// let users3 = [
-//   {id: 'john', name: "John Smith", age: 20},
-//   {id: 'ann', name: "Ann Smith", age: 24},
-//   {id: 'pete', name: "Pete Peterson", age: 31},
-// ];
-
-// function groupById(arr) {
-//   const result = arr.reduce((accum, item) => {
-//     accum[item.id] = item
-//     return accum
-//   }, {})
-//   return result
-// }
-
-// let usersById = groupById(users3);
-// console.log(usersById)
-
-// // ============================== 5.7 Перебираемые объекты ==============================
-
-// // ======= Фильтрация уникальных элементов массива =======
-
-// function unique(arr) {
-//   return Array.from(new Set(arr))
-// }
-
-// let values = ["Hare", "Krishna", "Hare", "Krishna",
-//   "Krishna", "Krishna", "Hare", "Hare", ":-O"
-// ];
-
-// console.log( unique(values) ); // Hare,Krishna,:-O
-
-// // ======= Отфильтруйте анаграммы =======
-
-// function aclean(arr) {
-//   const map = new Map()
-//   for(let word of arr) {
-//     const sorted = word.toLowerCase().split('').sort((a, b) => a.localeCompare(b)).join('')
-//     map.set(sorted, word)
+//   for (let i = array.length - 1; i > 0; i--) {
+//     let j = Math.floor(Math.random() * (i+1));
+//     [array[i], array[j]] =  [array[j], array[i]];
 //   }
-//   return Array.from(map.values())
+//   return array
 // }
 
-// let arr8 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+let arr5 = [1, 2, 3];
+console.log(shuffle(arr5));
+console.log(shuffle(arr5));
+console.log(shuffle(arr5));
 
-// console.log( aclean(arr8) ); // "nap,teachers,ear" или "PAN,cheaters,era"
+// ======= Получить средний возраст =======
 
+let vasya2 = { name: "Вася", age: 25 };
+let petya2 = { name: "Петя", age: 30 };
+let masha2 = { name: "Маша", age: 29 };
 
-// // ======= Перебираемые ключи =======
+let arr6 = [ vasya2, petya2, masha2 ];
 
-// let map = new Map();
-
-// map.set("name", "John");
-
-// let keys = Array.from(map.keys())
-
-// keys.push("more");
-
-// console.log(keys)
-
-// // ============================== 5.8 WeakMap и WeakSet ==============================
-
-// // ======= Хранение отметок "не прочитано" =======
-
-// let messages = [
-//   {text: "Hello", from: "John"},
-//   {text: "How goes?", from: "John"},
-//   {text: "See you soon", from: "Alice"}
-// ];
-
-// let unreadMessages = new WeakSet();
-// unreadMessages.add(messages[0])
-// unreadMessages.add(messages[1])
-// unreadMessages.add(messages[0])
-
-// console.log(unreadMessages)
-// console.log(unreadMessages.has(messages[0]))
+function getAverageAge(users) {
+  const totalAge = users.reduce((accum, item) => accum + item.age,0)
+  return totalAge/users.length
+}
+console.log( getAverageAge(arr6) ); // (25 + 30 + 29) / 3 = 28
 
 
-// // ======= Хранение времени прочтения =======
+// ======= Оставить уникальные элементы массива =======
 
-// let messages2 = [
-//   { text: "Hello", from: "John" },
-//   { text: "How goes?", from: "John" },
-//   { text: "See you soon", from: "Alice" }
-// ];
+let strings = ["кришна", "кришна", "харе", "харе",
+  "харе", "харе", "кришна", "кришна", ":-O"
+];
 
-// let readMap = new WeakMap();
+function unique(arr) {
+  const result = [];
+  arr.forEach(item => {
+    if(!result.includes(item)) {
+      result.push(item)
+    }
+  })
+  return result
+}
 
-// readMap.set(messages[0], new Date(2017, 1, 1));
-// readMap.set(messages[1], new Date(2018, 1, 1));
+console.log( unique(strings) ); // кришна, харе, :-O
 
-// console.log(readMap)
+// ======= Создайте объект с ключами из массива =======
+
+let users3 = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
+
+function groupById(arr) {
+  const result = arr.reduce((accum, item) => {
+    accum[item.id] = item
+    return accum
+  }, {})
+  return result
+}
+
+let usersById = groupById(users3);
+console.log(usersById)
+
+// ============================== 5.7 Перебираемые объекты ==============================
+
+// ======= Фильтрация уникальных элементов массива =======
+
+function unique(arr) {
+  return Array.from(new Set(arr))
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+console.log( unique(values) ); // Hare,Krishna,:-O
+
+// ======= Отфильтруйте анаграммы =======
+
+function aclean(arr) {
+  const map = new Map()
+  for(let word of arr) {
+    const sorted = word.toLowerCase().split('').sort((a, b) => a.localeCompare(b)).join('')
+    map.set(sorted, word)
+  }
+  return Array.from(map.values())
+}
+
+let arr8 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+console.log( aclean(arr8) ); // "nap,teachers,ear" или "PAN,cheaters,era"
 
 
-// // ============================== 5.9 Object.keys, values, entries ==============================
+// ======= Перебираемые ключи =======
 
-// // ======= Сумма свойств объекта =======
+let map = new Map();
 
-// let salaries = {
-//   "John": 100,
-//   "Pete": 300,
-//   "Mary": 250
-// };
+map.set("name", "John");
 
-// function sumSalaries(salaries) {
-//   let summ = 0
-//   for(const salary of Object.values(salaries)) {
-//     summ += salary
-//   }
-//   return summ
-// }
+let keys = Array.from(map.keys())
 
-// console.log( sumSalaries(salaries) ); // 650
+keys.push("more");
 
-// // ======= Подсчёт количества свойств объекта =======
+console.log(keys)
 
-// let user = {
-//   name: 'John',
-//   age: 30
-// };
+// ============================== 5.8 WeakMap и WeakSet ==============================
 
-// function count(obj) {
-//   return Object.keys(obj).length
-// }
+// ======= Хранение отметок "не прочитано" =======
 
-// console.log( count(user) ); // 2
+let messages = [
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
+];
+
+let unreadMessages = new WeakSet();
+unreadMessages.add(messages[0])
+unreadMessages.add(messages[1])
+unreadMessages.add(messages[0])
+
+console.log(unreadMessages)
+console.log(unreadMessages.has(messages[0]))
 
 
-// // ============================== 5.10 Деструктурирующее присваивание ==============================
+// ======= Хранение времени прочтения =======
 
-// // ======= Деструктурирующее присваивание =======
+let messages2 = [
+  { text: "Hello", from: "John" },
+  { text: "How goes?", from: "John" },
+  { text: "See you soon", from: "Alice" }
+];
 
-// let user2 = { name: "John", years: 30 };
+let readMap = new WeakMap();
 
-// // ваш код должен быть с левой стороны:
-// const {name, years: age, isAdmin = false} = user2
+readMap.set(messages[0], new Date(2017, 1, 1));
+readMap.set(messages[1], new Date(2018, 1, 1));
 
-// console.log( name ); // John
-// console.log( age ); // 30
-// console.log( isAdmin ); // false
+console.log(readMap)
+
+
+// ============================== 5.9 Object.keys, values, entries ==============================
+
+// ======= Сумма свойств объекта =======
+
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+function sumSalaries(salaries) {
+  let summ = 0
+  for(const salary of Object.values(salaries)) {
+    summ += salary
+  }
+  return summ
+}
+
+console.log( sumSalaries(salaries) ); // 650
+
+// ======= Подсчёт количества свойств объекта =======
+
+let user6 = {
+  name: 'John',
+  age: 30
+};
+
+function count(obj) {
+  return Object.keys(obj).length
+}
+
+console.log( count(user6) ); // 2
+
+
+// ============================== 5.10 Деструктурирующее присваивание ==============================
+
+// ======= Деструктурирующее присваивание =======
+
+let user2 = { name: "John", years: 30 };
+
+// ваш код должен быть с левой стороны:
+const {name, years: age, isAdmin = false} = user2
+
+console.log( name ); // John
+console.log( age ); // 30
+console.log( isAdmin ); // false
 
 
 // ======= Максимальная зарплата =======
@@ -584,7 +584,7 @@ function topSalary(salaries) {
 
 console.log(topSalary(salaries2))
 
-// // ============================== 5.10 Деструктурирующее присваивание ==============================
+// ============================== 5.11 Дата и время ==============================
 
 // ======= Создайте дату =======
 
@@ -680,13 +680,6 @@ console.log(getSecondsToTomorrow())
 
 // ======= Форматирование относительной даты =======
 
-// Если спустя date прошло менее 1 секунды, вывести "прямо сейчас".
-// В противном случае, если с date прошло меньше 1 минуты, вывести "n сек. назад".
-// В противном случае, если меньше часа, вывести "m мин. назад".
-// В противном случае, полная дата в формате "DD.MM.YY HH:mm". А именно: "день.месяц.год часы:минуты", всё в виде двух цифр, т.е. 31.12.16 10:00.
-// Например:
-
-
 function formatDate(date) {
   const now = new Date()
   const difference = now - date
@@ -706,10 +699,19 @@ function formatDate(date) {
 }
 
 console.log( formatDate(new Date(new Date - 1)) ); // "прямо сейчас"
-
 console.log( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
-
 console.log( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
-
 // вчерашняя дата вроде 31.12.2016, 20:00
 console.log( formatDate(new Date(new Date - 86400 * 1000)) );
+
+// ============================== 5.12 Формат JSON, метод toJSON ==============================
+
+// ======= Преобразуйте объект в JSON, а затем обратно в обычный объект =======
+
+let user = {
+  name: "Василий Иванович",
+  age: 35
+};
+
+const newUser = JSON.parse(JSON.stringify(user))
+
