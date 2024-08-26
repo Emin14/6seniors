@@ -299,24 +299,133 @@ function makeArmy() {
   let i = 0;
   while (i < 10) {
     const j = i
-    let shooter = function() { // функция shooter
-      // alert( i ); // должна выводить порядковый номер
+    let shooter = function() { 
       console.log(j)
     };
-    shooters.push(shooter); // и добавлять стрелка в массив
+    shooters.push(shooter);
     i++;
   }
 
-  // ...а в конце вернуть массив из всех стрелков
   return shooters;
 }
 
 let army = makeArmy();
 
-// все стрелки выводят 10 вместо их порядковых номеров (0, 1, 2, 3...)
+
 army[0](); // 10 от стрелка с порядковым номером 0
 army[1](); // 10 от стрелка с порядковым номером 1
 army[2](); // 10 ...и т.д.
-// Почему у всех стрелков одинаковые номера?
 
-// Почините код, чтобы он работал как задумано.
+
+
+// // ============================== Объект функции, NFE ==============================
+
+// // ======= Установка и уменьшение значения счётчика =======
+
+// Измените код makeCounter() так, чтобы счётчик мог уменьшать и устанавливать значение:
+
+// counter() должен возвращать следующее значение (как и раньше).
+// counter.set(value) должен устанавливать счётчику значение value.
+// counter.decrease() должен уменьшать значение счётчика на 1.
+
+function makeCounter2() {
+  let count = 0;
+
+  function counter() {
+    return count++;
+  }
+
+  counter.set = value => count = value;
+
+  counter.decrease = () => count--;
+
+  return counter;
+}
+
+
+const counter4 = makeCounter2()
+
+console.log(counter4.set(10))
+console.log(counter4.decrease())
+console.log(counter4.decrease())
+console.log(counter4.set(20))
+console.log(counter4.decrease())
+console.log(counter4.decrease())
+console.log(counter4())
+console.log(counter4())
+
+// // ======= Сумма с произвольным количеством скобок =======
+
+// Напишите функцию sum, которая бы работала следующим образом:
+
+function sum(a) {
+
+  let currentSum = a;
+
+  function f(b) {
+    currentSum += b;
+    return f;
+  }
+
+  f.toString = function() {
+    return currentSum;
+  };
+
+  return f;
+}
+
+console.log( sum(1)(2).toString() ); // 3
+console.log( sum(5)(-1)(2).toString() ); // 6
+console.log( sum(6)(-1)(-2)(-3).toString() ); // 0
+console.log( sum(0)(1)(2)(3)(4)(5).toString() ); // 15
+
+
+
+// // ============================== Планирование: setTimeout и setInterval ==============================
+
+// // ======= Вывод каждую секунду =======
+// Напишите функцию printNumbers(from, to), которая выводит число каждую секунду, начиная от from и заканчивая to.
+// Используя setInterval.
+
+function printNumbers(from, to) {
+  const id = setInterval(() => {
+    console.log(from)
+    from++
+    if(from > to) {
+      clearInterval(id)
+    }
+  }, 1000)
+}
+
+// Используя рекурсивный setTimeout.
+function printNumbers(from, to) {
+  setTimeout(function recursion() {
+    if(from <= to) {
+      console.log(from)
+      from++
+      setTimeout(recursion, 1000)
+    }
+  }, 1000)
+}
+
+
+printNumbers(2, 9)
+
+
+// ======= Что покажет setTimeout? =======
+// Когда будет выполнена запланированная функция?
+// Что покажет alert?
+
+let i = 0;
+
+setTimeout(() => console.log(i), 100); // ?
+
+// предположим, что время выполнения этой функции >100 мс
+for(let j = 0; j < 1000000000; j++) {
+  i++;
+}
+
+// После цикла.
+// alert 1000000000 покажет
+
+

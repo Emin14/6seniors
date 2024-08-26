@@ -394,3 +394,513 @@ function generateParenthesis(n) {
 
 
 console.log(generateParenthesis(3))
+
+
+
+
+
+
+
+// 4. Цепочка вызовов с разными операциями
+// Напишите функцию chain(value) с методами add(n), subtract(n), multiply(n) и divide(n), которая поддерживает цепочку вызовов. Пример: chain(5).add(2).multiply(3).subtract(4).divide(2) должно вернуть 9.
+
+function chain(value) {
+  return {
+    add(n) {
+      value += n;
+      return this;
+    },
+    subtract(n) {
+      value -= n;
+      return this;
+    },
+    multiply(n) {
+      value *= n;
+      return this;
+    },
+    divide(n) {
+      value /= n;
+      return this;
+    },
+    valueOf() { // Этот метод позволяет вернуть значение, когда объект используется как примитив
+      return value;
+    }
+  };
+}
+
+// Пример использования:
+console.log(chain(5).add(2).multiply(3).subtract(4).divide(2).valueOf()); // 9
+
+
+
+// Рекурсивное сложение с условием
+// Напишите функцию addUntil(sum) которая принимает число и возвращает новую функцию, которая будет складывать переданные значения до тех пор, пока их сумма не превысит sum. После этого функция должна возвращать конечное значение суммы.
+
+function addUntil(sum) {
+  let value = 0
+  return function counter(a) {
+    
+    if(value + a <= sum) {
+      return value += a
+    }
+    else {
+      return value
+    }
+  }
+}
+
+const ada = addUntil(6)
+
+console.log(ada(2))
+console.log(ada(2))
+console.log(ada(2))
+console.log(ada(2))
+
+
+
+// Задание суммы с динамическим количеством параметров
+// Напишите функцию dynamicSum(), которая может принимать любое количество чисел через цепочку вызовов, но возвращает результат, только когда вызывается без параметров. Пример: dynamicSum(1)(2)(3)() должно вернуть 6.
+function dynamicSum(a) {
+  let sum = a;
+
+  return function counter(b) {
+    if (arguments.length === 0) {  // Если функция вызвана без аргументов
+      return sum;
+    }
+    sum += b;
+    return counter;
+  }
+}
+
+console.log(dynamicSum(1)(2)(3)()); // 6
+
+
+
+// Ограниченная цепочка вызовов
+// Создайте функцию limitCalls(fn, maxCalls), которая возвращает новую функцию, которая может быть вызвана только maxCalls раз. После этого она должна возвращать undefined.
+
+function limitCalls(fn, maxCalls) {
+  let calls = 0;
+
+  return function(...args) {
+    if (calls < maxCalls) {
+      calls++;
+      return fn(...args);
+    } else {
+      return undefined;
+    }
+  };
+}
+
+// Пример использования:
+function sayHello(name) {
+  return `Hello, ${name}!`;
+}
+
+const limitedSayHello = limitCalls(sayHello, 3);
+
+console.log(limitedSayHello("Alice")); // "Hello, Alice!"
+console.log(limitedSayHello("Bob"));   // "Hello, Bob!"
+console.log(limitedSayHello("Charlie")); // "Hello, Charlie!"
+console.log(limitedSayHello("David"));  // undefined
+
+
+
+
+// 1. Рекурсивное умножение
+// Напишите функцию multiplyUntil(limit), которая принимает число и возвращает новую функцию, которая будет перемножать переданные значения до тех пор, пока их произведение не превысит limit. После этого функция должна возвращать конечное произведение.
+
+function multiplyUntil(limit) {
+  let multiplicationSum = 1;
+
+  function f(a) {
+    if (multiplicationSum * a <= limit) {
+      multiplicationSum *= a;
+      return f;
+    } else {
+      return multiplicationSum;
+    }
+  }
+
+  // Примитивное значение возвращается, если функция больше не может быть вызвана.
+  f.valueOf = function() {
+    return multiplicationSum;
+  };
+
+  return f;
+}
+
+console.log(multiplyUntil(100)(2)(5)(3).valueOf()); // 30
+console.log(multiplyUntil(50)(2)(4)(10)); // 40
+
+
+function example() {
+  return "I'm a function";
+}
+
+example.valueOf = function() {
+  return 42;
+};
+
+console.log(example + 10); // 52
+
+
+// 2. Условная цепочка вызовов
+// Напишите функцию conditionalChain(value), которая имеет методы ifPositive(fn), ifNegative(fn), и ifZero(fn). Эти методы вызывают переданную функцию только если текущее значение положительное, отрицательное или равно нулю соответственно.
+
+conditionalChain(5).ifPositive(() => console.log('positive')).ifNegative(() => console.log('negative'));
+conditionalChain(-3).ifNegative(() => console.log('negative')).ifPositive(() => console.log('positive'));
+
+
+function conditionalChain(value) {
+
+    return {
+      ifPositive(fn) {
+        if(value > 0) {
+          fn()
+        }
+        return this
+      },
+      ifNegative(fn) {
+        if(value < 0) {
+          fn()
+        }
+        return this
+      },
+      ifZero(fn) {
+        if(value === 0) {
+          fn()
+        }
+        return this
+      },
+      
+    }
+}
+
+
+// Сумма с задержкой в цепочке вызовов
+// Напишите функцию delayedChain(value), которая возвращает объект с методами add(n) и delay(ms). Метод delay(ms) откладывает выполнение следующей операции на указанное количество миллисекунд.
+
+delayedChain(1).add(2).delay(1000).add(3); // Выводит 6 через 1 секунду
+
+
+function delayedChain(value) {
+  return {
+    add(n) {
+      value += n
+      return this
+    },
+    delay(ms) {
+      setTimeout(() => {
+        console.log(value)
+      }, ms)
+      return this
+    },
+  }
+}
+
+
+
+// Прогрессивное уменьшение
+// Создайте функцию progressiveDecrease(value, step), которая возвращает объект с методами decrease(), уменьшающими значение на step при каждом вызове, пока значение не достигнет нуля. После этого каждый вызов decrease() должен возвращать ноль.
+
+
+function progressiveDecrease(value, step) {
+  return {
+    decrease() {
+      if(value - step > 0) {
+        value -= step
+        return value
+      }
+      else {
+        return 0
+      }
+    }
+  }
+}
+
+
+let counter5 = progressiveDecrease(10, 2);
+console.log(counter5.decrease()); // 8
+console.log(counter5.decrease()); // 6
+console.log(counter5.decrease()); // 4
+console.log(counter5.decrease()); // 2
+console.log(counter5.decrease()); // 0
+console.log(counter5.decrease()); // 0
+
+
+
+// 5. Максимальная сумма с отслеживанием вызовов
+// Напишите функцию maxSum(count, maxSumValue), которая принимает максимальное количество вызовов и максимальную сумму. Возвращаемая функция должна складывать переданные значения до тех пор, пока не будет достигнут лимит вызовов или лимит суммы.
+
+
+function maxSum(count, maxSumValue) {
+  let value = 0
+  let calls = 0
+  return (number) => {
+    calls++
+    if(value + number < maxSumValue && calls < count) {
+      value += number
+    }
+    return value
+  }
+}
+
+let sum2 = maxSum(3, 10);
+console.log(sum2(3)); // 3
+console.log(sum2(4)); // 7
+console.log(sum2(5)); // 7 (так как лимит суммы превышен)
+console.log(sum2(2)); // 7 (так как лимит вызовов превышен)
+
+
+// 6. Рекурсивное вычисление с условием завершения
+// Напишите функцию computeUntil(conditionFn), которая принимает условную функцию и возвращает новую функцию, которая вызывает себя рекурсивно до тех пор, пока условие не выполнится.
+
+function computeUntil(conditionFn) {
+  return function recursiveFn(actionFn) {
+    if(!conditionFn()) {
+      actionFn()
+      recursiveFn(actionFn)
+    }
+  }
+}
+
+let counter6 = 0;
+let compute = computeUntil(() => counter6 >= 10);
+compute(() => counter6++);
+console.log(counter6); // 10
+
+
+
+// 7. Переключатель значений
+// Создайте функцию toggle(initialValue, values), которая возвращает функцию, переключающую значение между указанными в values. Если значение достигло конца списка, оно должно вернуться к началу.
+
+function toggle(initialValue, values) {
+  let findIndex = values.indexOf(initialValue)
+  return () => {
+    if(findIndex !== values.length - 1) {
+      findIndex++
+    }
+    else {
+      findIndex = 0
+    }
+    return values[findIndex]
+  }
+}
+
+
+let toggle2 = toggle(0, [0, 1, 2]);
+console.log(toggle2()); // 1
+console.log(toggle2()); // 2
+console.log(toggle2()); // 0
+console.log(toggle2()); // 1
+
+
+
+// Прогрессивное суммирование с установкой начального значения
+// Напишите функцию progressiveSum(initialValue), которая возвращает объект с методами add(n) и reset(value). Метод reset(value) устанавливает новое начальное значение, от которого начинается последующее суммирование.
+
+function progressiveSum(initialValue) {
+  return {
+    add(n) {
+      return initialValue +=n
+    },
+    reset(value) {
+      initialValue = value
+      return initialValue
+    }
+  }
+}
+
+
+let sum3 = progressiveSum(5);
+console.log(sum3.add(3)); // 8
+sum3.reset(10);
+console.log(sum3.add(2)); // 12
+
+
+
+// Ограниченная цепочка вызовов с состоянием
+// Создайте функцию statefulChain(initialState), которая возвращает объект с методами add(value), subtract(value) и getState(). Эти методы должны изменять внутреннее состояние и позволять получить его текущее значение через метод getState().
+
+function statefulChain(initialState) {
+  return {
+    add(n) {
+      initialState += n
+      return this
+    },
+    subtract(n) {
+      initialState -= n
+      return this
+    },
+    getState(n) {
+      return initialState
+    }
+  }
+}
+
+let chain2 = statefulChain(0);
+chain2.add(5).subtract(3);
+console.log(chain2.getState()); // 2
+
+
+
+// Динамическое вычисление со сбросом
+// Напишите функцию dynamicCalculator(initialValue), которая возвращает объект с методами add(n), subtract(n), multiply(n), divide(n) и reset(value). Метод reset(value) должен сбрасывать текущее значение калькулятора.
+
+
+function dynamicCalculator(initialValue) {
+  return {
+    add(n) {
+      initialValue += n
+      return this
+    },
+    subtract(n) {
+      initialValue -= n
+      return this
+    },
+    multiply(n) {
+      initialValue *= n
+      return this
+    },
+    divide(n) {
+      initialValue /= n
+      return this
+    },
+    reset(n) {
+      initialValue = n
+      return this
+    },
+    valueOf() {
+      return initialValue
+    }
+  }
+}
+
+
+let calc = dynamicCalculator(10);
+calc.add(5).subtract(2).multiply(3);
+console.log(calc); // 39
+calc.reset(100);
+calc.divide(2);
+console.log(calc); // 50
+
+
+// Функция с кэшированием (мемоизация)
+// Напишите функцию memoize(fn), которая принимает другую функцию fn и возвращает новую функцию, которая кэширует результаты вызова fn. Если функция fn вызывается с теми же аргументами, кэшированная функция должна вернуть результат из кэша вместо повторного выполнения fn.
+
+function memoize(fn) {
+  const cache = new Map()
+  return (...args) => {
+    const key = JSON.stringify(args)
+    if(cache.has(key)) {
+      return cache.get(key)
+    }
+    const result = fn(...args)
+    cache.set(key, result)
+    return result
+  }
+}
+function slowFunction(n) {
+  console.log('Выполняется функция...');
+  return n * 2;
+}
+
+const memoizedFn = memoize(slowFunction);
+console.log(memoizedFn(5)); // Выполняется функция... 10
+console.log(memoizedFn(5)); // 10 (из кэша)
+
+
+// Умножение с динамическим количеством параметров
+// Напишите функцию dynamicMultiply(), которая может принимать любое количество чисел через цепочку вызовов, но возвращает результат умножения только когда вызывается без параметров. Пример: dynamicMultiply(2)(3)(4)() должно вернуть 24.
+
+function dynamicMultiply(a) {
+  return function fn(b) {
+    if (b === undefined) {
+      return a;
+    } else {
+      a *= b;
+      return fn;
+    }
+  };
+}
+
+
+console.log(dynamicMultiply(2)(3)(4)()); // Ожидаемый результат: 24
+console.log(dynamicMultiply(5)(-1)(2)()); // Ожидаемый результат: -10
+
+
+// Переход через промежуточные состояния
+// Напишите функцию stateMachine(initialState), которая возвращает объект с методами transition(newState), позволяющим переходить в новый состояние, и getState(), возвращающим текущее состояние.
+
+function stateMachine(initialState) {
+  return {
+    transition(newState) {
+      initialState = newState
+      return this
+    },
+    getState() {
+      return initialState
+    }
+  }
+}
+
+
+let sm = stateMachine('state1');
+sm.transition('state2').transition('state3');
+console.log(sm.getState()); // 'state3'
+
+
+// Функция с ограничением вызовов по времени
+// Создайте функцию throttle(fn, time), которая возвращает новую функцию, которая может быть вызвана только один раз в течение указанного времени time в миллисекундах. Повторные вызовы функции в течение этого времени должны быть проигнорированы.
+
+
+function throttle(fn, time) {
+  let isThrottled = false
+
+  return (...args) => {
+    if(!isThrottled) {
+      fn(...args)
+      isThrottled = true
+
+      setTimeout(() => {
+        isThrottled = false
+      }, time)
+    }
+  }
+}
+
+const throttledFn = throttle(() => console.log('Called!'), 1000);
+
+throttledFn(); // Ожидаемый результат: 'Called!'
+throttledFn(); // Ожидаемый результат: ничего (если вызвано в пределах 1 секунды)
+setTimeout(throttledFn, 1100); // Ожидаемый результат: 'Called!' (через 1.1 секунды)
+
+
+// Функция с сохранением промежуточных значений
+// Создайте функцию accumulator(initialValue), которая возвращает объект с методами add(value), subtract(value), и getHistory(). Метод getHistory() должен возвращать массив всех промежуточных значений, полученных после вызовов add и subtract.
+
+
+function accumulator(initialValue) {
+  const result = [initialValue]
+  
+  return {
+    add(value) {
+      initialValue += value
+      result.push(initialValue)
+    },
+    subtract(value) {
+      initialValue -= value
+      result.push(initialValue)
+    },
+    getHistory() {
+      return result
+    }
+  }
+}
+
+
+let acc = accumulator(10);
+acc.add(5);
+acc.subtract(3);
+console.log(acc.getHistory()); // Ожидаемый результат: [10, 15, 12]
