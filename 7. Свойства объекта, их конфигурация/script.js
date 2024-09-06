@@ -116,7 +116,7 @@ const account = {
       this.balance = value
    },
    get newBalance() {
-      throw new Error('error!!!')
+      // throw new Error('error!!!')
    }
 
 }
@@ -153,10 +153,5 @@ function protection(obj) {
 }
 
 // Подсказка: Используйте Object.freeze() для защиты от изменений, а также рекурсивное замораживание для вложенных объектов.
-
-
-
-
-
 
 
