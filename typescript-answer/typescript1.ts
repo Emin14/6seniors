@@ -53,7 +53,7 @@ function multiply(a:number, b:number):number {
  }
  
  // Задача 7: Используйте Enum для описания дней недели и типизируйте функцию, которая возвращает название дня.
- function getDayName(day):Weeks {
+ function getDayName(day: number): Weeks {
    switch (day) {
      case 0:
        return Weeks.Monday;
@@ -69,6 +69,8 @@ function multiply(a:number, b:number):number {
        return Weeks.Saturday;
      case 6:
        return Weeks.Sunday;
+    default: 
+      throw new Error("Invalid day number");
    }
  }
  
